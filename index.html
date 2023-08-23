@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Arraymap">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+           function getQuote(category) {
+                var apiUrl = 'https://api.api-ninjas.com/v1/quotes';
+
+                if (category !== 0) {
+                    apiUrl += '?category=' + category;
+                }
+
+                $.ajax({
+                    method: 'GET',
+                    url: apiUrl,
+                    headers: { 'X-Api-Key': 'WAAhLgBi+ic++AJcbIMwMg==mtEz8an6hzstaEEO' },
+                    contentType: 'application/json',
+                    success: function (result) {
+                        document.getElementById("quote").innerHTML = result[0].quote;
+                        document.getElementById("author").innerHTML = result[0].author;
+                        document.getElementById("category").innerHTML = result[0].category;
+                        console.log(result);
+                    },
+                    error: function ajaxError(jqXHR) {
+                        console.error('Error: ', jqXHR.responseText);
+                    }
+                });
+            }
+    </script>
+</head>
+
+<body style="background-color: #f8f9fa;">
+    <header class="bg-dark text-white text-center py-4">
+        <h1 class="header-title" style="color: #f8f9fa;">Quote Generator</h1>
+    </header>
+    <div class="container mt-5">
+        <div class="form-group row mt-3 text-center justify-content-center">
+            <!-- <label for="categorySelect" class="col-sm-2 col-form-label">Category</label> -->
+            <div class="col-sm-8">
+                <select id="categorySelect" class="form-control">
+                        <option value=0>select</option>
+                        <option value="age"> age </option>
+                        <option value="alone"> alone </option>
+                        <option value="amazing"> amazing </option>
+                        <option value="anger"> anger </option>
+                        <option value="architecture"> architecture </option>
+                        <option value="art"> art </option>
+                        <option value="attitude"> attitude </option>
+                        <option value="beauty"> beauty </option>
+                        <option value="best"> best </option>
+                        <option value="birthday"> birthday </option>
+                        <option value="business"> business </option>
+                        <option value="car"> car </option>
+                        <option value="change"> change </option>
+                        <option value="communications"> communications </option>
+                        <option value="computers"> computers </option>
+                        <option value="cool"> cool </option>
+                        <option value="courage"> courage </option>
+                        <option value="dad"> dad </option>
+                        <option value="dating"> dating </option>
+                        <option value="death"> death </option>
+                        <option value="design"> design </option>
+                        <option value="dreams"> dreams </option>
+                        <option value="education"> education </option>
+                        <option value="environmental"> environmental </option>
+                        <option value="equality"> equality </option>
+                        <option value="experience"> experience </option>
+                        <option value="failure"> failure </option>
+                        <option value="faith"> faith </option>
+                        <option value="family"> family </option>
+                        <option value="famous"> famous </option>
+                        <option value="fear"> fear </option>
+                        <option value="fitness"> fitness </option>
+                        <option value="food"> food </option>
+                        <option value="forgiveness"> forgiveness </option>
+                        <option value="freedom"> freedom </option>
+                        <option value="friendship"> friendship </option>
+                        <option value="funny"> funny </option>
+                        <option value="future"> future </option>
+                        <option value="god"> god </option>
+                        <option value="good"> good </option>
+                        <option value="government"> government </option>
+                        <option value="graduation"> graduation </option>
+                        <option value="great"> great </option>
+                        <option value="happiness"> happiness </option>
+                        <option value="health"> health </option>
+                        <option value="history"> history </option>
+                        <option value="home"> home </option>
+                        <option value="hope"> hope </option>
+                        <option value="humor"> humor </option>
+                        <option value="imagination"> imagination </option>
+                        <option value="inspirational"> inspirational </option>
+                        <option value="intelligence"> intelligence </option>
+                        <option value="jealousy"> jealousy </option>
+                        <option value="knowledge"> knowledge </option>
+                        <option value="leadership"> leadership </option>
+                        <option value="learning"> learning </option>
+                        <option value="legal"> legal </option>
+                        <option value="life"> life </option>
+                        <option value="love"> love </option>
+                        <option value="marriage"> marriage </option>
+                        <option value="medical"> medical </option>
+                        <option value="men"> men </option>
+                        <option value="mom"> mom </option>
+                        <option value="money"> money </option>
+                        <option value="morning"> morning </option>
+                        <option value="movies"> movies </option>
+                        <option value="success"> success </option>
+                    </select>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" onclick="getQuote(document.getElementById('categorySelect').value)" style="background-color: #007bff;">QUOTE</button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <p id="quote" style="color: #343a40;"></p>
+                <p id="author" style="color: #6c757d;" class="text-center"></p>
+                <p id="category" style="color: #6c757d;" class="text-center"></p>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="footer-text">&copy; 2023 Quote Generator Made By Arraymap with ❤️</p>
+    </footer>
+
+                <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        select {
+            flex: 1;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        #quote {
+            font-size: 24px;
+            color: #343a40;
+        }
+
+        #author,
+        #category {
+            color: #6c757d;
+            font-style: italic;
+        }
+           footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    </style>
+            
+</body>
+
+</html>
